@@ -29,8 +29,8 @@ public class Driver {
             options.setUdid("emulator-5554")
                     //app yukleme yaparken
                     //.setApp("C:\\Users\\levoo\\IdeaProjects\\AppiumVersion_NewServer\\Apps\\Kiwi.com - Book Cheap Flights_2023.14.0_Apkpure.apk")
-                    .setAppPackage("com.google.android.calculator")
-                    .setAppActivity("com.android.calculator2.Calculator")
+                    .setAppPackage(ConfigReader.getProperty("appPackageArabam"))
+                    .setAppActivity(ConfigReader.getProperty("appActivityArabam"))
                     .setNoReset(false);
 
 
