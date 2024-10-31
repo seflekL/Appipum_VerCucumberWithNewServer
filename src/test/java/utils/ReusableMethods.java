@@ -1,8 +1,12 @@
 package utils;
 
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
+import io.appium.java_client.touch.TapOptions;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.apache.commons.io.FileUtils;
@@ -647,5 +651,90 @@ public class ReusableMethods {
         }
     }
 
+    public static void phonekeyboardenterTextLeo(String text) {
+        AndroidDriver driver = Driver.getAndroidDriver();
 
-}
+        for (char ch : text.toCharArray()) {
+            switch (ch) {
+                case 'a': driver.pressKey(new KeyEvent(AndroidKey.A)); break;
+                case 'b': driver.pressKey(new KeyEvent(AndroidKey.B)); break;
+                case 'c': driver.pressKey(new KeyEvent(AndroidKey.C)); break;
+                case 'd': driver.pressKey(new KeyEvent(AndroidKey.D)); break;
+                case 'e': driver.pressKey(new KeyEvent(AndroidKey.E)); break;
+                case 'f': driver.pressKey(new KeyEvent(AndroidKey.F)); break;
+                case 'g': driver.pressKey(new KeyEvent(AndroidKey.G)); break;
+                case 'h': driver.pressKey(new KeyEvent(AndroidKey.H)); break;
+                case 'i': driver.pressKey(new KeyEvent(AndroidKey.I)); break;
+                case 'j': driver.pressKey(new KeyEvent(AndroidKey.J)); break;
+                case 'k': driver.pressKey(new KeyEvent(AndroidKey.K)); break;
+                case 'l': driver.pressKey(new KeyEvent(AndroidKey.L)); break;
+                case 'm': driver.pressKey(new KeyEvent(AndroidKey.M)); break;
+                case 'n': driver.pressKey(new KeyEvent(AndroidKey.N)); break;
+                case 'o': driver.pressKey(new KeyEvent(AndroidKey.O)); break;
+                case 'p': driver.pressKey(new KeyEvent(AndroidKey.P)); break;
+                case 'q': driver.pressKey(new KeyEvent(AndroidKey.Q)); break;
+                case 'r': driver.pressKey(new KeyEvent(AndroidKey.R)); break;
+                case 's': driver.pressKey(new KeyEvent(AndroidKey.S)); break;
+                case 't': driver.pressKey(new KeyEvent(AndroidKey.T)); break;
+                case 'u': driver.pressKey(new KeyEvent(AndroidKey.U)); break;
+                case 'v': driver.pressKey(new KeyEvent(AndroidKey.V)); break;
+                case 'w': driver.pressKey(new KeyEvent(AndroidKey.W)); break;
+                case 'x': driver.pressKey(new KeyEvent(AndroidKey.X)); break;
+                case 'y': driver.pressKey(new KeyEvent(AndroidKey.Y)); break;
+                case 'z': driver.pressKey(new KeyEvent(AndroidKey.Z)); break;
+                default:
+                    System.out.println("Unsupported character: " + ch);
+            }
+        }
+    }
+
+    public static void swipeByCoordinatesLeo(AndroidDriver driver, int startX, int startY, int endX, int endY, int duration) {
+        new TouchAction<>(driver)
+                .press(PointOption.point(startX, startY)) // Başlangıç noktası
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(duration))) // Kaydırma süresi
+                .moveTo(PointOption.point(endX, endY)) // Bitiş noktası
+                .release()
+                .perform();
+    }
+    public static void kaydirmaYapLeo(int baslangicX, int baslangicY, int bitisX, int bitisY, int sure, int tekrarSayisi) {
+        // Dokunma işlemi için bir PointerInput oluşturuyoruz
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+
+        for (int i = 0; i < tekrarSayisi; i++) {
+            Sequence swipe = new Sequence(finger, 1);
+
+            // Başlangıç noktasına dokunma
+            swipe.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), baslangicX, baslangicY));
+            swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+
+            // Kaydırma hareketini süre boyunca gerçekleştir
+            swipe.addAction(finger.createPointerMove(Duration.ofMillis(sure), PointerInput.Origin.viewport(), bitisX, bitisY));
+            swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+            // Eylemi driver ile gerçekleştiriyoruz
+            ((AppiumDriver) Driver.getAndroidDriver()).perform(Collections.singletonList(swipe));
+
+            // Her kaydırma arasında kısa bir bekleme (isteğe bağlı)
+            try {
+                Thread.sleep(500); // milisaniye cinsinden bekleme süresi
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public static void kaydirmasonarasiKordinatsecLeo(int x, int y) {
+        // Dokunma işlemi için bir PointerInput oluşturuyoruz
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        Sequence tap = new Sequence(finger, 1);
+
+        // Belirtilen koordinata dokunma
+        tap.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), x, y));
+        tap.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        tap.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+        // Eylemi driver ile gerçekleştiriyoruz
+        ((AppiumDriver) Driver.getAndroidDriver()).perform(Collections.singletonList(tap));
+    }
+    }
+
+

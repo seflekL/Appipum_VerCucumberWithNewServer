@@ -28,9 +28,9 @@ public class Driver {
             UiAutomator2Options options = new UiAutomator2Options();
             options.setUdid("emulator-5554")
                     //app yukleme yaparken
-                    //.setApp("C:\\Users\\levoo\\IdeaProjects\\AppiumVersion_NewServer\\Apps\\Kiwi.com - Book Cheap Flights_2023.14.0_Apkpure.apk")
-                    .setAppPackage(ConfigReader.getProperty("appPackageArabam"))
-                    .setAppActivity(ConfigReader.getProperty("appActivityArabam"))
+                    //.setApp("C:\\Users\\levoo\\IdeaProjects\\AppiumVersion_NewServer\\Apps\\all-currency-converter-3-9-0 (1).apk")
+                   .setAppPackage(ConfigReader.getProperty("appPackageCurrency"))
+                   .setAppActivity(ConfigReader.getProperty("appActivityCurrency"))
                     .setNoReset(false);
 
 
