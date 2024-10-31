@@ -735,6 +735,8 @@ public class ReusableMethods {
         // Eylemi driver ile gerçekleştiriyoruz
         ((AppiumDriver) Driver.getAndroidDriver()).perform(Collections.singletonList(tap));
     }
-    }
+
+}
+
 
 

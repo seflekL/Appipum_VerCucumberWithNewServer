@@ -6,7 +6,9 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-         plugin = {"pretty", "html:target/cucumber-reports/regression.html"},
+         //STANDARD RAPOR
+        // plugin = {"pretty", "html:target/cucumber-reports/regression.html"},
+        plugin = {"pretty", "html:target/cucumber-reports.html"},
         features = "src/test/resources/features",
         // features kisminda birden fazla dosya yolu belirtebiliriz bunu {"content root","2.content root"} eklemesi yapilir
         glue = "stepDefinitions", // features dosyasinda yazilan sozlu metinlerin kod bolumune aktarildigi yer
