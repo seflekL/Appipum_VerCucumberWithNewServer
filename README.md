@@ -58,6 +58,7 @@ Testleri Çalıştırın:
 bash
 Kodu kopyala
 mvn test
+
 🧪 Test Senaryoları
 Test senaryolarınızı Cucumber formatında src/test/java dizini altında oluşturabilirsiniz. Örnek bir senaryo:
 
@@ -68,6 +69,8 @@ Feature: Hesap Makinesi İşlemleri
     Given Kullanıcı hesap makinesi uygulamasını açar
     When Kullanıcı 5 ve 3 değerlerini toplar
     Then Sonuç 8 olmalıdır
+
+    
 📊 Test Raporları
 Test sonuçlarına ve raporlarına target/reports klasöründen ulaşabilirsiniz.
 
